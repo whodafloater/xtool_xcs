@@ -1,0 +1,111 @@
+{
+  "Fixtures": [
+    {
+      "G54": true
+    }
+  ],
+  "OrderOutputBy": "Fixture",
+  "Output": "%D/%d.gcode",
+  "Post": "xtool_xcs",
+  "PostArgs": "",
+  "SetupSheet": {
+    "ClearanceHeightExpression": "OpStockZMax+${SetupSheet}.ClearanceHeightOffset",
+    "ClearanceHeightOffset": "5.000 mm",
+    "FinalDepthExpression": "OpFinalDepth",
+    "SafeHeightExpression": "OpStockZMax+${SetupSheet}.SafeHeightOffset",
+    "SafeHeightOffset": "3.000 mm",
+    "StartDepthExpression": "OpStartDepth",
+    "StepDownExpression": "1.5 mm"
+  },
+  "SplitOutput": false,
+  "Stock": {
+    "create": "FromBase",
+    "version": 1,
+    "xneg": "1.0 mm",
+    "xpos": "1.0 mm",
+    "yneg": "1.0 mm",
+    "ypos": "1.0 mm",
+    "zneg": "0.0 mm",
+    "zpos": "0.0 mm"
+  },
+  "Tolerance": "0.01",
+  "ToolController": [
+    {
+      "dir": "Forward",
+      "hfeed": "6.0 mm/s",
+      "hrapid": "50.0 mm/s",
+      "label": "wood 1.5mm depth",
+      "name": "TC__300um_kerf_laser",
+      "nr": 1,
+      "speed": 1000.0,
+      "tool": {
+        "attribute": {},
+        "name": "300um kerf laser",
+        "parameter": {
+          "Chipload": "0.000 mm",
+          "CuttingEdgeHeight": "10.000 mm",
+          "Diameter": "0.300 mm",
+          "Flutes": "0",
+          "Length": "20.000 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.000 mm",
+          "SpindleDirection": "Forward"
+        },
+        "shape": "endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.0 mm/s",
+      "vrapid": "0.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    },
+    {
+      "dir": "Forward",
+      "hfeed": "50.0 mm/s",
+      "hrapid": "50.0 mm/s",
+      "label": "wood marking",
+      "name": "TC__300um_kerf_laser001",
+      "nr": 2,
+      "speed": 500.0,
+      "tool": {
+        "attribute": {},
+        "name": "300um kerf laser001",
+        "parameter": {
+          "Chipload": "0.000 mm",
+          "CuttingEdgeHeight": "10.000 mm",
+          "Diameter": "0.300 mm",
+          "Flutes": "0",
+          "Length": "20.000 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.000 mm",
+          "SpindleDirection": "Forward"
+        },
+        "shape": "endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.0 mm/s",
+      "vrapid": "0.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    }
+  ],
+  "Version": 1
+}
