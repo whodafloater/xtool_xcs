@@ -551,6 +551,9 @@ def parse(dout, pathobj):
                 pathing = True
                 svg_feed = dout['feed']
                 svg_power = dout['speed']
+                bound['x'] = list()
+                bound['y'] = list()
+
 
             if pathing and c.Name in FEED_MOVES:
                 #print("pathing ...")
@@ -603,6 +606,9 @@ def svg_finish_path(dout, svg, feed, power, bound):
     dout['glob_bound']['x'].append(dout['svgps'][tail]['xmax'])
     dout['glob_bound']['y'].append(dout['svgps'][tail]['ymax'])
     dout['glob_bound']['y'].append(dout['svgps'][tail]['ymin'])
+
+    print(dout['svgps'][tail])
+
 
 def svg_move(cmd, startPoint, bound):
     endPoint = PathGeom.commandEndPoint(cmd, startPoint)
