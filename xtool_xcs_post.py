@@ -320,7 +320,7 @@ def export(objectslist, filename, argstring):
 
 
     if not filename == "-":
-        gfile = pythonopen(filename + ".gcode", "w")
+        gfile = pythonopen(filename, "w")
         gfile.write(final)
         gfile.close()
 
@@ -355,6 +355,12 @@ def export(objectslist, filename, argstring):
         pa.add_process('VECTOR_CUTTING', power, feed, 1).group(filename)
         canvas1.add_element(pa);
 
+    # strip filename extension if it looks like gcode.
+    # XcsSave will add an xcs extensiont
+    f = filename.split('.')
+    if f[len(f)-1] in ['gc', 'gcode']:
+        f.pop(len(f)-1)
+    filename = '.'.join(f)
 
     xt.XcsCanvas.active_canvas = canvas1
     xt.XcsSave(filename)
