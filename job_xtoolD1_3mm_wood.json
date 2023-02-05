@@ -15,7 +15,7 @@
     "SafeHeightExpression": "OpStockZMax+${SetupSheet}.SafeHeightOffset",
     "SafeHeightOffset": "3.000 mm",
     "StartDepthExpression": "OpStartDepth",
-    "StepDownExpression": "1.5 mm"
+    "StepDownExpression": "1.2 mm"
   },
   "SplitOutput": false,
   "Stock": {
@@ -32,21 +32,21 @@
   "ToolController": [
     {
       "dir": "Forward",
-      "hfeed": "6.0 mm/s",
+      "hfeed": "10.0 mm/s",
       "hrapid": "50.0 mm/s",
-      "label": "wood 1.5mm depth",
-      "name": "TC__300um_kerf_laser",
+      "label": "wood cutting",
+      "name": "TC__200um_kerf_laser",
       "nr": 1,
       "speed": 1000.0,
       "tool": {
         "attribute": {},
-        "name": "300um kerf laser",
+        "name": "200um kerf laser cut",
         "parameter": {
           "Chipload": "0.000 mm",
-          "CuttingEdgeHeight": "10.000 mm",
-          "Diameter": "0.300 mm",
+          "CuttingEdgeHeight": "20.000 mm",
+          "Diameter": "0.200 mm",
           "Flutes": "0",
-          "Length": "20.000 mm",
+          "Length": "30.000 mm",
           "Material": "HSS",
           "ShankDiameter": "3.000 mm",
           "SpindleDirection": "Forward"
@@ -70,21 +70,21 @@
     },
     {
       "dir": "Forward",
-      "hfeed": "50.0 mm/s",
+      "hfeed": "70.0 mm/s",
       "hrapid": "50.0 mm/s",
       "label": "wood marking",
-      "name": "TC__300um_kerf_laser001",
+      "name": "200um_kerf_laser marker",
       "nr": 2,
       "speed": 500.0,
       "tool": {
         "attribute": {},
-        "name": "300um kerf laser001",
+        "name": "200um kerf laser marker",
         "parameter": {
           "Chipload": "0.000 mm",
-          "CuttingEdgeHeight": "10.000 mm",
-          "Diameter": "0.300 mm",
+          "CuttingEdgeHeight": "20.000 mm",
+          "Diameter": "0.200 mm",
           "Flutes": "0",
-          "Length": "20.000 mm",
+          "Length": "30.000 mm",
           "Material": "HSS",
           "ShankDiameter": "3.000 mm",
           "SpindleDirection": "Forward"

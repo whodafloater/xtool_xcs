@@ -2,7 +2,7 @@
   "tools": [
     {
       "nr": 1,
-      "path": "300um_laser.fctb"
+      "path": "200um_laser.fctb"
     }
   ],
   "version": 1

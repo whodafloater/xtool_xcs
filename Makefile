@@ -28,6 +28,7 @@ install: xtool_xcs.py xtool_xcs_post.py
 	cp xtool_xcs_post.py $(fc_macro_dir)/xtool_xcs_post.py
 	cp laser_tools.fctl  $(fc_macro_dir)/Library/laser_tools.fctl
 	cp 300um_laser.fctb  $(fc_macro_dir)/Bit/300um_laser.fctb
+	cp 200um_laser.fctb  $(fc_macro_dir)/Bit/200um_laser.fctb
 	cp job_xtoolD1_3mm_wood.json $(fc_macro_dir)/job_xtoolD1_3mm_wood.json
 
 hello_world.xcs:  xtool_xcs.py
