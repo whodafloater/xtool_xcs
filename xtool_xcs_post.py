@@ -34,6 +34,7 @@ import PathScripts.PathGeom as PathGeom
 
 import xtool_xcs as xt
 import json
+import math
 
 TOOLTIP = """
 This is a postprocessor file for the Path workbench.
@@ -505,19 +506,19 @@ def parse(dout, pathobj):
                         ):
                             continue
                         else:
-                            pos = Units.Quantity(
-                                c.Parameters[param], FreeCAD.Units.Length
-                            )
-                            outstring.append(
-                                param
-                                + format(
-                                    float(pos.getValueAs(UNIT_FORMAT)), precision_string
-                                )
-                            )
+                            # X20.123
+                            # Y12.567
+                            outstring.append(param + fculps(c.Parameters[param], param))
+
+            arc_segs = []
+            if c.Name in ["G2", "G02", "G3", "G03",]:
+                arc_segs = gcode_arc(c, prevVector)
+                outstring = []
 
             # store the latest command
             lastcommand = command
             currLocation.update(c.Parameters)
+            currVector = Vector(currLocation["X"], currLocation["Y"], 0)
 
             # svg
             # start a new path if z step down
@@ -547,9 +548,6 @@ def parse(dout, pathobj):
                 pathing = False
 
 
-            prevVector = Vector(prevLocation["X"], prevLocation["Y"], 0)
-            currVector = Vector(currLocation["X"], currLocation["Y"], 0)
-
             if start_path:
                 print("start path: power=" + str(dout['speed']) + " feed=" +  str(dout['feed']))
                 svg += svg_move(c, prevVector, bound)
@@ -569,6 +567,7 @@ def parse(dout, pathobj):
                     svg += svg_arc(c, prevVector, bound)
 
             prevLocation.update(c.Parameters)
+            prevVector = Vector(prevLocation["X"], prevLocation["Y"], 0)
 
 
             if command == "message":
@@ -589,10 +588,57 @@ def parse(dout, pathobj):
                 # of a contiguous string & thus quadratic complexity.
                 out += "\n"
 
+            if len(arc_segs) > 0:
+                for w in arc_segs:
+                    if OUTPUT_LINE_NUMBERS:
+                        w.insert(0, (linenumber()))
+                    out += w + "\n"
+
         svg_finish_path(dout, svg, svg_feed, svg_power, bound)
 
         dout['gcode'] = dout['gcode'] + out
         return dout
+
+# p1, p2, c are vector objects
+def gcode_arc(cmd, p1):
+    p2 = PathGeom.commandEndPoint(cmd, p1)
+    c  = p1 + PathGeom.commandEndPoint(cmd, Vector(0, 0, 0), "I", "J", "K")
+
+    r1 = (p1 - c)
+    r2 = (p2 - c)
+    rad = r1.Length
+
+    a1 = math.atan2(r1.y, r1.x)
+    a2 = math.atan2(r2.y, r2.x)
+
+    if cmd.Name in ['G3', 'G03',]:
+        # CCW
+        tarc = a2 - a1
+        if tarc < 0:
+            tarc += 2 * math.pi
+    else:
+        # CW
+        tarc = a2 - a1
+        if tarc > 0:
+            tarc -= 2 * math.pi
+
+    # chord_err = rad * (1 - cos(arcstep/2))
+    # arcstep = 2 * acos(1 - chord_err / rad)
+    chord_err = 0.01
+    arcstep = 2 * math.acos(1 - chord_err / rad)
+
+    n = int(abs(tarc / arcstep))
+    n = max(n, 2)
+    n = min(n, 128)
+    segs = []
+    for i in range(1, n):
+        a = a1 + tarc * float(i) / float(n-1);
+        x = c.x + rad * math.cos(a)
+        y = c.y + rad * math.sin(a)
+        segs.append(f'G1 X{fculps(x, "X")} Y{fculps(y, "Y")}')
+
+    return segs
+
 
 def svg_finish_path(dout, svg, feed, power, bound):
     # capture path only if it draws something
@@ -743,5 +789,14 @@ def svgnum(val):
     precision_string = "." + str(PRECISION) + "f"
     pos = Units.Quantity(val, FreeCAD.Units.Length)
     return format( float(pos.getValueAs(UNIT_FORMAT)), precision_string)
+
+def fculps(val, key):
+    global PRECISION
+    precision_string = "." + str(PRECISION) + "f"
+    pos  = Units.Quantity(val, FreeCAD.Units.Length)
+    if key == 'Y':
+       pos = -pos
+    return format(float(pos.getValueAs(UNIT_FORMAT)), precision_string)
+
 
 # print(__name__ + " gcode postprocessor loaded.")
