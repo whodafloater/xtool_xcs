@@ -283,6 +283,8 @@ def export(objectslist, filename, argstring):
 
         # process the operation gcode
 
+        dout['gcode'] = ""
+        dout['svgps'] = list()
         parse(dout, obj)
 
         gcode += dout['gcode']

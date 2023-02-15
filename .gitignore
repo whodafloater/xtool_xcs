@@ -2,3 +2,4 @@ my.*
 *.xcs
 *.pretty
 __pycache__
+README.html

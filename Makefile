@@ -14,7 +14,7 @@ else
     $(error echo $(OS) not supported in Makefile)
 endif
 
-all: hello_world.xcs xcstest.xcs test_cuts.pretty
+all: hello_world.xcs xcstest.xcs test_cuts.pretty README.html
 
 # Make sure paths are right.
 # These file should be present from the FreeCAD install
@@ -42,6 +42,9 @@ test_cuts.xcs : test_cuts.py xtool_xcs.py
 
 test_cuts.pretty : test_cuts.xcs
 	python -m json.tool test_cuts.xcs > $@
+
+README.html : README.md
+	markdown $^ > $@
 
 clean:
 	rm -f *.xcs *.xcs.txt *.pretty
