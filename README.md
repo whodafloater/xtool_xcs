@@ -12,7 +12,7 @@ from FreeCAD's Tool Path module
 
 ## Installation
 
-Just copy some file into you FreeCAD macro directory.
+Just copy some files into you FreeCAD macro directory.
 
 See the Makefile. It works on a windows installation using Msys2
 for a shell. Adjust the paths for you system.
@@ -35,7 +35,7 @@ For the freeCAD path processor: See  FreeCAD DOC [fcpathworkbench]
 Use the job template file when creating a new job:
 
 ```
- job_xtoolD1_3mm_wood.json when you create a new
+ job_xtoolD1_3mm_wood.json
 ```
 
 Edit this file or export a new one from the Job Editor.

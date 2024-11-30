@@ -29,8 +29,13 @@ import Path
 import argparse
 import datetime
 import shlex
-from PathScripts import PostUtils
-import PathScripts.PathGeom as PathGeom
+
+# FreeCAD 0.20
+#from PathScripts import PostUtils
+#import PathScripts.PathGeom as PathGeom
+
+# FreeCAD 0.21
+import Path.Geom as PathGeom
 
 import xtool_xcs as xt
 import json
@@ -313,7 +318,7 @@ def export(objectslist, filename, argstring):
         if len(gcode) > 100000:
             print("Skipping editor since output is greater than 100kb")
         else:
-            dia = PostUtils.GCodeEditorDialog()
+            #dia = PostUtils.GCodeEditorDialog()
             dia.editor.setText(gcode)
             result = dia.exec_()
             if result:
