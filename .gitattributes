@@ -1,0 +1,12 @@
+
+*         text=auto
+
+*.py      text
+*.xcs     text
+*.pretty  text
+*.fctl    text
+*.fctb    text
+*.json    text
+*.html    text
+*.md      text
+Makefile  text
