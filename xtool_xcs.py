@@ -204,6 +204,15 @@ class XcsText(XcsPrim):
         # good for numbers
         #  "fontFamily": "SWGDT",
         #  "fontSource": "system",
+        #
+        #  old versions of xcs would give priority to width
+        #  and fit the font to the box. No so with version v2.2.23
+        #  size 12 is about 2.1mm width
+        #  
+        #  So, hack for V2 is to compute fontsize based on width of
+        #  the text box and how many chars are in it.
+        self.fontScale = 12 / 2.1
+        #
         self.style = {
                        "fontFamily": "Lato",
                        "fontSource": "build-in",
@@ -240,10 +249,11 @@ class XcsText(XcsPrim):
 
     def encode(self):
         self.width = self.aspect * len(self.text) * self.height
-        if self.text == '1':
-            self.width = self.aspect * self.height * 0.5
+        #if self.text == '1':
+        #    self.width = self.aspect * self.height * 0.5
         self.x = self.ox - self.width  * ((self.org-1)%3)/2
         self.y = self.oy - self.height * int((self.org-1)/3)/2
+        self.style["fontSize"] = self.fontScale * self.width / float(len(self.text))
         d = XcsPrim.encode(self)
         d['text'] = self.text
         d['resolution'] = self.resolution
