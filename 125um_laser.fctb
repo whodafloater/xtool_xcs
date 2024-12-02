@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "125um kerf laser",
+  "shape": "endmill.fcstd",
+  "parameter": {
+    "CuttingEdgeHeight": "20.0000 mm",
+    "Diameter": "0.200 mm",
+    "Length": "30.0000 mm",
+    "ShankDiameter": "3.0000 mm"
+  },
+  "attribute": {}
+}

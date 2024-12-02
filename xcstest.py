@@ -8,9 +8,9 @@ def main():
     circ1 = xt.XcsCircle('circ1', xt.XcsPnt(50,20), xt.XcsPnt(60,30))
 
     penpoints = list()
-    penpoints.append (xt.point(100,100))
-    penpoints.append (xt.point(105,100))
-    penpoints.append (xt.point(105,110))
+    penpoints.append (xt.XcsPnt(100,100))
+    penpoints.append (xt.XcsPnt(105,100))
+    penpoints.append (xt.XcsPnt(105,110))
     pentri = xt.XcsPen('pen1').setpoints(penpoints)
     #pentri.add_process('VECTOR_CUTTING', 81, 31, 2)
 

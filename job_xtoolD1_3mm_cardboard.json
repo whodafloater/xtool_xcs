@@ -1,0 +1,111 @@
+{
+  "Fixtures": [
+    {
+      "G54": true
+    }
+  ],
+  "OrderOutputBy": "Fixture",
+  "Output": "%D/%d.gcode",
+  "Post": "xtool_xcs",
+  "PostArgs": "",
+  "SetupSheet": {
+    "ClearanceHeightExpression": "OpStockZMax+${SetupSheet}.ClearanceHeightOffset",
+    "ClearanceHeightOffset": "5.000 mm",
+    "FinalDepthExpression": "OpFinalDepth",
+    "SafeHeightExpression": "OpStockZMax+${SetupSheet}.SafeHeightOffset",
+    "SafeHeightOffset": "3.000 mm",
+    "StartDepthExpression": "OpStartDepth",
+    "StepDownExpression": "3.3 mm"
+  },
+  "SplitOutput": false,
+  "Stock": {
+    "create": "FromBase",
+    "version": 1,
+    "xneg": "1.0 mm",
+    "xpos": "1.0 mm",
+    "yneg": "1.0 mm",
+    "ypos": "1.0 mm",
+    "zneg": "0.0 mm",
+    "zpos": "0.0 mm"
+  },
+  "Tolerance": "0.01",
+  "ToolController": [
+    {
+      "dir": "Forward",
+      "hfeed": "10.0 mm/s",
+      "hrapid": "50.0 mm/s",
+      "label": "cardboard cutting",
+      "name": "TC__125um_kerf_laser",
+      "nr": 1,
+      "speed": 1000.0,
+      "tool": {
+        "attribute": {},
+        "name": "125um kerf laser cut",
+        "parameter": {
+          "Chipload": "0.000 mm",
+          "CuttingEdgeHeight": "20.000 mm",
+          "Diameter": "0.200 mm",
+          "Flutes": "0",
+          "Length": "30.000 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.000 mm",
+          "SpindleDirection": "Forward"
+        },
+        "shape": "endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.0 mm/s",
+      "vrapid": "0.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    },
+    {
+      "dir": "Forward",
+      "hfeed": "70.0 mm/s",
+      "hrapid": "50.0 mm/s",
+      "label": "wood marking",
+      "name": "125um_kerf_laser marker",
+      "nr": 2,
+      "speed": 500.0,
+      "tool": {
+        "attribute": {},
+        "name": "125um kerf laser marker",
+        "parameter": {
+          "Chipload": "0.000 mm",
+          "CuttingEdgeHeight": "20.000 mm",
+          "Diameter": "0.200 mm",
+          "Flutes": "0",
+          "Length": "30.000 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.000 mm",
+          "SpindleDirection": "Forward"
+        },
+        "shape": "endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.0 mm/s",
+      "vrapid": "0.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    }
+  ],
+  "Version": 1
+}

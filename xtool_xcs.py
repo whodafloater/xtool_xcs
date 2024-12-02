@@ -139,11 +139,12 @@ class XcsPen(XcsPrim):
         self.id = id
         self.points = list()
         self.controlPoints = dict()
+        self.isClosePath = False
 
     def setpoints(self, a):
         self.points = a
-        self.x = a[0]['x']
-        self.y = a[0]['y']
+        self.x = (a[0]).x
+        self.y = (a[0]).y
         return self
 
     def encode(self):
@@ -170,8 +171,8 @@ class XcsPath(XcsPrim):
 
     def setpoints(self, a):
         self.points = a
-        self.x = a[0]['x']
-        self.y = a[0]['y']
+        self.x = (a[0]).x
+        self.y = (a[0]).y
         return self
 
     def setpath(self, x, y, path):

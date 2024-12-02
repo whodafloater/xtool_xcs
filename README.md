@@ -6,9 +6,18 @@
 
 -A python module for generating .xcs project files for xTool Creative Space
 
+
+
 -A FreeCAD Path post processor to generate a .xcs project file directly
 from FreeCAD's Tool Path module
 
+## xTool Creative Space versions
+
+Works with version v1.1.24
+
+Version v1.5.10, shapes work, processing breaks
+
+Version v2, more stuff breaks
 
 ## Installation
 

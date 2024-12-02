@@ -1,3 +1,5 @@
+#!python3
+
 import xtool_xcs as xt
 import json
 
@@ -18,6 +20,24 @@ def addtestbox(canvas, w, h, x, y, p, s, n):
     canvas.add_element(annotation(str(int(s)), x+w/2, y+h*2/4))
     canvas.add_element(annotation(str(int(n)), x+w/2, y+h*3/4))
     return r
+
+def addtestU(canvas, w, h, x, y, p, s, n):
+    # cut a U shape so it does not fall apart
+
+    points = [xt.XcsPnt(x, y),
+              xt.XcsPnt(x, y + h),
+              xt.XcsPnt(x + w, y + h),
+              xt.XcsPnt(x + w, y),
+             ]
+
+    path = xt.XcsPen('U').setpoints(points).add_process('VECTOR_CUTTING', p, s, n)
+    path.width = w
+    path.height = h
+
+    canvas.add_element(path)
+    canvas.add_element(annotation(str(int(p)), x+w/2, y+h*1/4))
+    canvas.add_element(annotation(str(int(s)), x+w/2, y+h*2/4))
+    canvas.add_element(annotation(str(int(n)), x+w/2, y+h*3/4))
 
 def main():
 
@@ -54,7 +74,31 @@ def main():
             y = pi*(h+5)
             s = speed[si]
             p = power[pi]
-            addtestbox(canvas2, w, h, x, y, p, s, npass)
+            #addtestbox(canvas2, w, h, x, y, p, s, npass)
+            addtestU(canvas2, w, h, x, y, p, s, npass)
+
+
+    # 3mm corrugated cardboard
+    n = 3
+    m = 3
+    npass = 1
+    speed = steps(30,  10, n)
+    power = steps(70, 100, m)
+
+    canvas3 = xt.XcsCanvas()
+    for pi in range(m):
+        for si in range(n):
+            x = 5 + si*(w+5)
+            y = 5 + pi*(h+5)
+            s = speed[si]
+            p = power[pi]
+            addtestU(canvas3, w, h, x, y, p, s, npass)
+
+    # surrounding box at last speed and power setting
+    # to cut this test card from the panel
+    r = xt.XcsRect('rect', xt.XcsPnt(0,0), xt.XcsPnt(10,10))
+    r. place(0, 0). size(5+(w+5)*n, 5+(h+5)*m) .add_process('VECTOR_CUTTING', p, s, npass)
+    canvas3.add_element(r)
 
     xt.XcsCanvas.active_canvas = canvas1
     xt.XcsSave('test_cuts')
