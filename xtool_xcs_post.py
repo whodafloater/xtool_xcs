@@ -363,18 +363,33 @@ def export(objectslist, filename, argstring):
         pa.add_process('VECTOR_CUTTING', power, feed, 1).group(filename)
         canvas1.add_element(pa);
 
-    # strip filename extension if it looks like gcode.
-    # XcsSave will add an xcs extensiont
-    f = filename.split('.')
-    if f[len(f)-1] in ['gc', 'gcode']:
-        f.pop(len(f)-1)
-    filename = '.'.join(f)
+    # In FreeCAD 1.0 we do not get a filename, just a '-'.
+    # Just return serialized xcs json
+   
+    # FreeCAD 0.21 and before:
+    # Save a xcs file and return the gcode 
+    if not filename == '-':
+       # strip filename extension if it looks like gcode.
+       # XcsSave will add an xcs extensiont
+       print(f'incoming filename is {filename}')
+       f = filename.split('.')
+       if f[len(f)-1] in ['gc', 'gcode']:
+           f.pop(len(f)-1)
+       filename = '.'.join(f)
 
-    xt.XcsCanvas.active_canvas = canvas1
-    xt.XcsSave(filename)
+       #filename = 'tmp.xcs'
+
+       xt.XcsCanvas.active_canvas = canvas1
+       print(f'saving to {filename}')
+       xt.XcsSave(filename)
+
+       print("done postprocessing.")
+       # return gcode
+       return final
 
     print("done postprocessing.")
-    return final
+    xt.XcsCanvas.active_canvas = canvas1
+    return xt.XcsSave('-')
 
 
 def linenumber():

@@ -3,7 +3,8 @@ OS = $(shell uname -o)
 
 ifeq ($(OS), Msys)
     programs = /c/users/$(USER)/AppData/Local/Programs
-    freecad = FreeCAD\ 0.21
+#    freecad = FreeCAD\ 0.21
+    freecad = FreeCAD\ 1.0
     modpath = Mod/Path/
 
     fc_mod_path_post_dir = $(programs)/$(freecad)/$(modpath)/PathScripts/post

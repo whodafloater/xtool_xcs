@@ -3,3 +3,5 @@ my.*
 *.pretty
 __pycache__
 README.html
+
+xcstest.xcs.txt

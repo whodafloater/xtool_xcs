@@ -5,7 +5,7 @@
     }
   ],
   "OrderOutputBy": "Fixture",
-  "Output": "%D/%d.gcode",
+  "Output": "%D/%d.xcs",
   "Post": "xtool_xcs",
   "PostArgs": "",
   "SetupSheet": {

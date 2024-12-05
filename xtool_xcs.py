@@ -380,8 +380,14 @@ def XcsSave(filename):
     xcs['extID'] = 'D1'
     xcs['device'] = XcsCanvas.device_encode()['device']
 
-    outfile = open(filename + '.xcs', mode='w')
-    json.dump(xcs, outfile, cls=XcsEncode)
+    print(f'XcsSave filename = {filename}')
+
+    if filename == '-':
+       return json.dumps(xcs, cls=XcsEncode)
+    else:
+       outfile = open(filename + '.xcs', mode='w')
+       json.dump(xcs, outfile, cls=XcsEncode)
+       return
 
 
 def point(x,y):

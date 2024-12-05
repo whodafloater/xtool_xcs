@@ -15,6 +15,8 @@ from FreeCAD's Tool Path module
 
 Works with version v1.1.24
 
+Tested with xTool D1
+
 Version v1.5.10, shapes work, processing breaks
 
 Version v2, more stuff breaks
