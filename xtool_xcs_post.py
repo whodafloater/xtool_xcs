@@ -1,3 +1,6 @@
+#  Much of this code is leveraged from,
+#     FreeCAD/src/Mod/CAM/Path/Post/scripts/linuxcnc_post.py
+#
 # ***************************************************************************
 # *   Copyright (c) 2014 sliptonic <shopinthewoods@gmail.com>               *
 # *                                                                         *
@@ -20,6 +23,12 @@
 # *   USA                                                                   *
 # *                                                                         *
 # ***************************************************************************
+#
+#  Additional code to support XTool D1 gcode and XTool Creative Space project
+#  file generation
+#
+#  Copyright (c) 2024 whodafloater
+#
 
 from __future__ import print_function
 import FreeCAD
@@ -45,14 +54,15 @@ TOOLTIP = """
 This is a postprocessor file for the Path workbench.
 It produces:
    GCode file suitable for the xTool D1 Laser cutter
-   An xcs file that can be opend with xTool Creative Space
+   An xcs project file for xTool Creative Space
 
 SpindleSpeed is mapped to laser power, 1000RPM -> 100%
 
 1/15/2023 GCode files must be manually copied to flash card as "tmp.gcode"
-          xTool D1 does not support G2, G3 arcs
+          xTool D1 does not support G2, G3 arcs. This post processor
+          converts them to paths.
 
-Best to use xTool Creative Space to interface with the machine
+Best to use xTool Creative Space to interface with the machine.
 """
 
 now = datetime.datetime.now()
