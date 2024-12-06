@@ -1,5 +1,24 @@
 
-
 tested with xTool Creative Space v1.2.24
 
 11/30/2024 latest is v1.5.10
+
+-------------------------------------------------------------------------------
+
+FreeCAD 1.0
+
+Interface to post processor scripts no longer provides a filename
+
+In the past xtool_xcs_post.py produced a .xcs project file as a side effect
+and passed the xTool D1 gcode back to FreeCAD and it handled the file system
+stuff.
+
+Now we need two post proccessors:
+
+      xtool_gcode_post.py
+         provides xTool D1 Gcode
+
+      xtool_xcs_post.py
+         provides a Xtool Creative Space project file
+
+-------------------------------------------------------------------------------
