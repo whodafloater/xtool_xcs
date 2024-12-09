@@ -100,6 +100,36 @@ def main():
     r. place(0, 0). size(5+(w+5)*n, 5+(h+5)*m) .add_process('VECTOR_CUTTING', p, s, npass)
     canvas3.add_element(r)
 
+
+
+    # 4mm foam core
+    # none of these worked. foam just melts between paper and reflows.
+    # if you get it hot enough backsdie paper will burn but not cut.
+    # yes, using air.
+    n = 3
+    m = 3
+    npass = 4
+    speed = steps(15, 5,  n)
+    power = steps(30, 60, m)
+
+    canvas4 = xt.XcsCanvas()
+    for pi in range(m):
+        for si in range(n):
+            x = 5 + si*(w+5)
+            y = 5 + pi*(h+5)
+            s = speed[si]
+            p = power[pi]
+            addtestU(canvas4, w, h, x, y, p, s, npass)
+
+    # surrounding box at last speed and power setting
+    # to cut this test card from the panel
+    r = xt.XcsRect('rect', xt.XcsPnt(0,0), xt.XcsPnt(10,10))
+    r. place(0, 0). size(5+(w+5)*n, 5+(h+5)*m) .add_process('VECTOR_CUTTING', p, s, npass)
+    canvas4.add_element(r)
+
+
+
+
     xt.XcsCanvas.active_canvas = canvas1
     xt.XcsSave('test_cuts')
 

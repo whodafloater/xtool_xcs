@@ -5,7 +5,7 @@
     }
   ],
   "OrderOutputBy": "Fixture",
-  "Output": "%D/%d.xcs",
+  "Output": "%D/%d_%j.xcs",
   "Post": "xtool_xcs",
   "PostArgs": "",
   "SetupSheet": {
