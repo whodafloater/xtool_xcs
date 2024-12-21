@@ -33,8 +33,12 @@ install: xtool_xcs.py xtool_xcs_post.py
 	mkdir -p $(fc_mod_path_post_dir)
 	mkdir -p $(fc_macro_dir)/Library
 	mkdir -p $(fc_macro_dir)/Bit
+
 	cp xtool_xcs.py      $(fc_macro_dir)/xtool_xcs.py
 	cp xtooltmp_post.py $(fc_macro_dir)/xtooltmp_post.py
+	cp xtoolrf_post.py $(fc_macro_dir)/xtoolrf_post.py
+
+	cp UtilsXTool.py $(fc_macro_dir)/UtilsXTool.py
 	cp laser_tools.fctl  $(fc_macro_dir)/Library/laser_tools.fctl
 	cp 300um_laser.fctb  $(fc_macro_dir)/Bit/300um_laser.fctb
 	cp 200um_laser.fctb  $(fc_macro_dir)/Bit/200um_laser.fctb
