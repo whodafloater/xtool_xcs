@@ -255,14 +255,14 @@ def linenumber(values):
 def init_xtool_values(values):
     """Initialize values that are used throughout the postprocessor."""
     #
+    # See FreeCAD/src/Mod/Path/Path/Post/UtilsArguments.py
+    # for common args and default values
     PostUtilsArguments.init_shared_values(values)
     #
     # Set any values here that need to override the default values set
     # in the init_shared_values routine.
     #
-    values["ENABLE_COOLANT"] = True
-    # the order of parameters
-    # linuxcnc doesn't want K properties on XY plane; Arcs need work.
+    # these are the linuxcnc values
     values["PARAMETER_ORDER"] = [
         "X",
         "Y",
@@ -306,6 +306,9 @@ G1 S020
 G0 X17 Y1
 M18
 """
+
+    # What the machine wants. Don't change these.
+    # Your FreeCAD drawing gets converted to these units in the gcode and svg.
     values["UNITS"] = "G21"  # G21 for metric, G20 for us standard
     values["UNIT_SPEED_FORMAT"] = "mm/min"
     values["UNIT_FORMAT"] = "mm"
@@ -319,17 +322,17 @@ M18
 
     values["LINENR"] = 100
 
-
-def export_xtool(values, objectslist, filename):
-
-    # This is from the original xtool_xcs_post.py
-    # Many fragments in here can migriate to the routines in UtilsExport.py
-
     # needed for fclps() and svgnum()
     global PRECISION
     global UNIT_FORMAT
     PRECISION = values["AXIS_PRECISION"]
     UNIT_FORMAT = values["UNIT_FORMAT"]
+
+
+def export_xtool(values, objectslist, filename):
+
+    # This is from the original xtool_xcs_post.py
+    # Many fragments in here can migrate to the routines in UtilsExport.py
 
     OUTPUT_HEADER = values["OUTPUT_HEADER"]
     OUTPUT_COMMENTS = values["OUTPUT_COMMENTS"]

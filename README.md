@@ -69,7 +69,7 @@ You can also selct whether or not to process holes and cutouts.
 
 ## License
 
-MIT
+MIT, some LGPL2 as noted in source files
 
 [//]:#
 [fcpathworkbench]: <https://wiki.freecad.org/Path_Workbench>
