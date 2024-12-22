@@ -4,18 +4,15 @@
 
 ## Features
 
--A python module for generating .xcs project files for xTool Creative Space
+- A python module for generating .xcs project files for xTool Creative Space
 
+- FreeCAD CAM post processors
+  - xtoolxcs_post generates a .xcs project file directly
+  - xtoolgcode_post generates G-code for the X-Tool D1
 
+## xTool Creative Space version compatabilty
 
--A FreeCAD Path post processor to generate a .xcs project file directly
-from FreeCAD's Tool Path module
-
-## xTool Creative Space versions
-
-Works with version v1.1.24
-
-Tested with xTool D1
+Works with version v1.1.24, tested with xTool D1
 
 Version v1.5.10, shapes work, processing breaks
 
@@ -47,6 +44,7 @@ Use the job template file when creating a new job:
 
 ```
  job_xtoolD1_3mm_wood.json
+ job_xtoolD1_3mm_cardboard.json
 ```
 
 Edit this file or export a new one from the Job Editor.

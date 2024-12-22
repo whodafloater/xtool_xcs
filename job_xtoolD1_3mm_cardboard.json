@@ -6,7 +6,7 @@
   ],
   "OrderOutputBy": "Fixture",
   "Output": "%D/%d_%j.xcs",
-  "Post": "xtool_xcs",
+  "Post": "xtoolxcs",
   "PostArgs": "",
   "SetupSheet": {
     "ClearanceHeightExpression": "OpStockZMax+${SetupSheet}.ClearanceHeightOffset",

@@ -1,5 +1,31 @@
+# ***************************************************************************
+# *   Copyright (c) 2024 whodafloater
+# *                                                                         *
+# *   This program is free software; you can redistribute it and/or modify  *
+# *   it under the terms of the GNU Lesser General Public License (LGPL)    *
+# *   as published by the Free Software Foundation; either version 2 of     *
+# *   the License, or (at your option) any later version.                   *
+# *   for detail see the LICENCE text file.                                 *
+# *                                                                         *
+# *   This program is distributed in the hope that it will be useful,       *
+# *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+# *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+# *   GNU Library General Public License for more details.                  *
+# *                                                                         *
+# *   You should have received a copy of the GNU Library General Public     *
+# *   License along with this program; if not, write to the Free Software   *
+# *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  *
+# *   USA                                                                   *
+# *                                                                         *
+# **************************************************************************
 #
-# common functions for the XTool post processor
+# Common functions for the XTool post processor
+#    export_xtool() returns gcode and an xcs project
+#
+# parts leveraged from linuxcnc_post.py, refactored_linuxcnc_post.py
+#    Copyright (c) 2014 sliptonic <shopinthewoods@gmail.com>
+#    Copyright (c) 2022 Larry Woestman <LarryWoestman2@gmail.com>
+#
 
 import FreeCAD
 from FreeCAD import Units
@@ -488,9 +514,11 @@ def export_xtool(values, objectslist, filename):
 #       # return gcode
 #       return final_gcode
 
-    print("done postprocessing.")
     xt.XcsCanvas.active_canvas = canvas1
     xcs = xt.XcsSave('-')
+
+    print("done postprocessing.")
+
     return final_gcode, xcs
 
 

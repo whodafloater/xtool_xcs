@@ -23,20 +23,19 @@ all: hello_world.xcs xcstest.xcs test_cuts.pretty README.html
 #install: | $(fc_mod_path_post_dir)/linuxcnc_post.py
 #install: | $(fc_macro_dir)/Bit/5mm_Drill.fctb
 
-
 # FreeCAD 0.21
 #install: | $(fc_macro_dir)/Bit/5mm_Drill.fctb
 
 install: xtool_xcs.py xtool_xcs_post.py 
-	#rm -f $(fc_mod_path_post_dir)/xtool_xcs.py
-	#rm -f $(fc_mod_path_post_dir)/xtool_xcs_post.py
 	mkdir -p $(fc_mod_path_post_dir)
 	mkdir -p $(fc_macro_dir)/Library
 	mkdir -p $(fc_macro_dir)/Bit
 
+	rm -f $(fc_mod_path_post_dir)/xtool_xcs_post.py
+
 	cp xtool_xcs.py      $(fc_macro_dir)/xtool_xcs.py
-	cp xtooltmp_post.py $(fc_macro_dir)/xtooltmp_post.py
-	cp xtoolrf_post.py $(fc_macro_dir)/xtoolrf_post.py
+	cp xtoolxcs_post.py $(fc_macro_dir)/xtoolxcs_post.py
+	cp xtoolgcode_post.py $(fc_macro_dir)/xtoolgcode_post.py
 
 	cp UtilsXTool.py $(fc_macro_dir)/UtilsXTool.py
 	cp laser_tools.fctl  $(fc_macro_dir)/Library/laser_tools.fctl
