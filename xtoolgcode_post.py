@@ -126,6 +126,9 @@ global_parser: Parser = init_arguments(
     global_values, global_argument_defaults, global_arguments_visible
 )
 
+for name in global_values:
+   print(f'{name:25s}  {global_values[name]}')
+
 #
 # The TOOLTIP_ARGS value is created from the help information about the arguments.
 #

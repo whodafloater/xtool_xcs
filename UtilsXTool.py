@@ -289,12 +289,21 @@ def init_xtool_values(values):
     #
     values["MACHINE_NAME"] = "XTool D1"
 
-    values["PREAMBE"] = """
-M17 S1
-M106 S0
+    #
+    # Any commands in this value will be output after the header and
+    # safety block at the beginning of the G-code file.
+    #
+
+    # G92 X17 Y1   offset of the laser relative to the LED cross hair
+    # G90          use absolute positioning
+    # Now G1, G0 moves subract 17mm, 1mm from x,y in command so
+    # led cross hair location is the effective 0,0
+    values["PREAMBLE"] = """
+M17 S1 (enable steppers)
+M106 S0 (led off)
 M205 X426 Y403
 M101
-G92 X17 Y1
+G92 X17 Y1 (laser offset from led)
 G90
 
 G1 F1860
@@ -302,9 +311,13 @@ G0 F3000
 G1 S020
 """
 
+    # move to position that puts LED cross hair back to 0,0
+    # turn on the cross hair to verify it is indeed back at 0,0
+    # disable the steppers
     values[ "POSTAMBLE" ] = """
 G0 X17 Y1
-M18
+M106 S1 (led on)
+M18 (disable steppers)
 """
 
     # What the machine wants. Don't change these.
@@ -314,11 +327,6 @@ M18
     values["UNIT_FORMAT"] = "mm"
 
     values["POSTPROCESSOR_FILE_NAME"] = __name__
-    #
-    # Any commands in this value will be output after the header and
-    # safety block at the beginning of the G-code file.
-    #
-    values["PREAMBLE"] = """G17 G54 G40 G49 G80 G90"""
 
     values["LINENR"] = 100
 
@@ -352,7 +360,6 @@ def export_xtool(values, objectslist, filename):
             return None
 
     print("postprocessing...")
-    print(values)
     gcode = ""
     svg = ""
 
