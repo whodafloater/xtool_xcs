@@ -10,6 +10,10 @@
   - xtoolxcs_post generates a .xcs project file directly
   - xtoolgcode_post generates G-code for the X-Tool D1
 
+For a command line tool to generate framing code and upload gcode
+to the X-Tool D1 checkout [xtd1toolkit]
+
+
 ## xTool Creative Space version compatabilty
 
 Works with version v1.1.24, tested with xTool D1
@@ -74,3 +78,4 @@ MIT, some LGPL2 as noted in source files
 [//]:#
 [fcpathworkbench]: <https://wiki.freecad.org/Path_Workbench>
 [fcprefs]: <https://wiki.freecad.org/Path_Preferences>
+[xtd1toolkit]: <https://github.com/whodafloater/xtd1_toolkit>
